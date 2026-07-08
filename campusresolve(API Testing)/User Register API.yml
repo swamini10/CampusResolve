@@ -1,0 +1,25 @@
+info:
+  name: User Register API
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:8080/api/users/register
+  body:
+    type: json
+    data: |-
+      {
+          "fullName": "Pinkey",
+          "email": "pinkey@gmail.com",
+          "mobile": "999943210",
+          "password": "15555",
+          "role": "STUDENT"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
