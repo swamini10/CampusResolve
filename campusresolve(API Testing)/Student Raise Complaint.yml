@@ -1,0 +1,25 @@
+info:
+  name: Student Raise Complaint
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: http://localhost:8080/api/complaints
+  headers:
+    - name: Authorization
+      value: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdHVkZW50QGdtYWlsLmNvbSIsImlhdCI6MTc4Mzc3NzEzMywiZXhwIjoxNzgzODYzNTMzfQ.zkTi1Ulcu4lfkK6UVX1GW89d2KpHMIEoyW2JMa7ROkQ
+  body:
+    type: json
+    data: |-
+      {
+        "title": "WiFi Issue",
+        "description": "College WiFi is not working."
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,28 @@
+info:
+  name: Admin Register
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: http://localhost:8080/api/users/register
+  headers:
+    - name: Authorization
+      value: "Bearer "
+  body:
+    type: json
+    data: |-
+      {
+        "fullName": "Admin",
+        "email": "admin@gmail.com",
+        "mobile": "9999999999",
+        "password": "123456",
+        "role": "ADMIN"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

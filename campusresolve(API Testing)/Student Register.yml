@@ -1,0 +1,28 @@
+info:
+  name: Student Register
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:8080/api/users/register
+  headers:
+    - name: Authorization
+      value: "Bearer "
+  body:
+    type: json
+    data: |-
+      {
+        "fullName": "Student One",
+        "email": "student@gmail.com",
+        "mobile": "9876547777",
+        "password": "123456",
+        "role": "STUDENT"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

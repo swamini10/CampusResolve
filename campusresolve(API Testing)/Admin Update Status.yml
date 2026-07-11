@@ -1,0 +1,22 @@
+info:
+  name: Admin Update Status
+  type: http
+  seq: 12
+
+http:
+  method: PUT
+  url: http://localhost:8080/api/complaints/1?status=IN_PROGRESS
+  headers:
+    - name: Authorization
+      value: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3ODM3NzcyNjgsImV4cCI6MTc4Mzg2MzY2OH0.n8uabhWrZm06U_-gzdEnQJUv0LYCx6PKyNhpGCRWhXQ
+  params:
+    - name: status
+      value: IN_PROGRESS
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

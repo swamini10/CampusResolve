@@ -1,0 +1,18 @@
+info:
+  name: Admin Dashboard
+  type: http
+  seq: 10
+
+http:
+  method: GET
+  url: http://localhost:8080/api/admin/dashboard
+  headers:
+    - name: Authorization
+      value: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3ODM3NzcyNjgsImV4cCI6MTc4Mzg2MzY2OH0.n8uabhWrZm06U_-gzdEnQJUv0LYCx6PKyNhpGCRWhXQ
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
