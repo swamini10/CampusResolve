@@ -18,12 +18,11 @@ public class ComplaintController {
     @Autowired
     private ComplaintService complaintService;
 
-    // Raise Complaint
-    @PostMapping("/{userId}")
-    public Complaint raiseComplaint(@PathVariable Long userId,
-                                    @RequestBody ComplaintRequest request) {
+    // Student - Raise Complaint
+    @PostMapping
+    public Complaint raiseComplaint(@RequestBody ComplaintRequest request) {
 
-        return complaintService.raiseComplaint(userId, request);
+        return complaintService.raiseComplaint(request);
     }
 
     // Get Complaint By Id
@@ -34,10 +33,10 @@ public class ComplaintController {
     }
 
     // Student - My Complaints
-    @GetMapping("/user/{userId}")
-    public List<Complaint> getMyComplaints(@PathVariable Long userId) {
+    @GetMapping("/my")
+    public List<Complaint> getMyComplaints() {
 
-        return complaintService.getMyComplaints(userId);
+        return complaintService.getMyComplaints();
     }
 
     // Admin - All Complaints
