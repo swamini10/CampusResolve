@@ -1,0 +1,98 @@
+
+.raise-container{
+    min-height: calc(100vh - 70px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    background: #eef3f8;
+}
+
+.raise-card{
+    width: 100%;
+    max-width: 700px;
+    background: #fff;
+    border-radius: 15px;
+    padding: 35px;
+    box-shadow: 0 8px 20px rgba(0,0,0,.08);
+}
+
+
+.raise-card h2{
+    color:#1e3a8a;
+    margin-bottom:8px;
+}
+
+.raise-card p{
+    color:#64748b;
+    margin-bottom:25px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    margin-bottom:20px;
+}
+
+.form-group label{
+    margin-bottom:8px;
+    font-weight:600;
+    color:#334155;
+}
+
+.form-group input,
+.form-group textarea{
+    width:100%;
+    border:1px solid #cbd5e1;
+    border-radius:8px;
+    padding:12px;
+    font-size:15px;
+    outline:none;
+}
+
+.form-group textarea{
+    resize:vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+    border-color:#2563eb;
+    box-shadow:0 0 0 3px rgba(37,99,235,.12);
+}
+
+.raise-card button{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:14px;
+    width:100%;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:600;
+}
+
+.raise-card button:hover{
+    background:#1d4ed8;
+}
+.success-msg{
+    width:100%;
+    padding:12px;
+    margin-bottom:15px;
+    border-radius:8px;
+    background:#dcfce7;
+    color:#15803d;
+    font-weight:600;
+    text-align:center;
+}
+
+.error-msg{
+    width:100%;
+    padding:12px;
+    margin-bottom:15px;
+    border-radius:8px;
+    background:#fee2e2;
+    color:#dc2626;
+    font-weight:600;
+    text-align:center;
+}

@@ -1,0 +1,150 @@
+.sidebar {
+    width: 260px;
+    min-height: 100vh;
+    background: #1e3a8a;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 25px 20px;
+}
+
+/* ---------- Logo ---------- */
+
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,.15);
+}
+
+.logo-icon {
+    font-size: 34px;
+}
+
+.sidebar-logo h2 {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+/* ---------- Menu ---------- */
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.sidebar-menu a {
+    text-decoration: none;
+    color: #dbeafe;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    transition: .3s;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.sidebar-menu a svg {
+    font-size: 18px;
+}
+
+.sidebar-menu a:hover {
+    background: rgba(255,255,255,.12);
+    color: white;
+}
+
+.sidebar-menu a.active {
+    background: #2563eb;
+    color: white;
+}
+
+/* ---------- Footer ---------- */
+
+.sidebar-footer {
+    margin-top: auto;
+    border-top: 1px solid rgba(255,255,255,.15);
+    padding-top: 20px;
+}
+
+/* ---------- User ---------- */
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.user-icon {
+    font-size: 48px;
+    color: white;
+}
+
+.user-details {
+    flex: 1;
+}
+
+.user-details h4 {
+    font-size: 16px;
+    margin-bottom: 3px;
+    color: white;
+}
+
+.user-details p {
+    font-size: 12px;
+    color: #cbd5e1;
+    word-break: break-word;
+    margin-bottom: 10px;
+}
+
+.role-badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    background: #2563eb;
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* ---------- Logout ---------- */
+
+.logout-btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 13px;
+    border: none;
+    border-radius: 10px;
+    background: #dc2626;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.logout-btn:hover {
+    background: #b91c1c;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width:768px) {
+
+    .sidebar {
+        width: 220px;
+    }
+
+    .sidebar-logo h2 {
+        font-size: 20px;
+    }
+
+}

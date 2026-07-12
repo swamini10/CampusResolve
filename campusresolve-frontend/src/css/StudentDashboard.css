@@ -1,0 +1,68 @@
+.dashboard{
+    display:flex;
+    min-height:100vh;
+    background:#eef3f8;
+}
+
+.dashboard-content{
+    flex:1;
+}
+
+.dashboard-body{
+    padding:35px;
+}
+
+.welcome-section{
+    background:#fff;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    margin-bottom:30px;
+}
+
+.welcome-section h2{
+    color:#1e3a8a;
+    margin-bottom:10px;
+}
+
+.welcome-section p{
+    color:#64748b;
+    line-height:1.7;
+}
+
+.quick-actions{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+}
+
+.action-card{
+    background:#fff;
+    text-decoration:none;
+    padding:30px;
+    border-radius:12px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.action-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 25px rgba(37,99,235,.18);
+}
+
+.action-card svg{
+    font-size:45px;
+    color:#2563eb;
+    margin-bottom:15px;
+}
+
+.action-card h3{
+    color:#1e3a8a;
+    margin-bottom:10px;
+}
+
+.action-card p{
+    color:#64748b;
+    line-height:1.6;
+}

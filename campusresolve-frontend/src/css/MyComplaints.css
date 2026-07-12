@@ -1,0 +1,99 @@
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+    background: #f4f7fb;
+}
+
+.dashboard-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.complaints-container {
+    flex: 1;
+    padding: 35px;
+}
+
+.complaints-card {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 5px 18px rgba(0,0,0,.08);
+}
+
+.complaints-card h2 {
+    color: #1e3a8a;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: gray;
+    margin-bottom: 25px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #1e3a8a;
+    color: white;
+}
+
+th {
+    padding: 15px;
+    text-align: left;
+}
+
+td {
+    padding: 15px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+tbody tr:hover {
+    background: #f8fafc;
+}
+
+.status {
+    padding: 7px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.progress {
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+.resolved {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 60px;
+    color: gray;
+}
+
+@media(max-width:900px){
+
+    .complaints-container{
+        padding:20px;
+    }
+
+    table{
+        display:block;
+        overflow-x:auto;
+        white-space:nowrap;
+    }
+
+}
