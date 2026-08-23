@@ -20,12 +20,15 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
+                // Disable CSRF because we are using JWT
                 .csrf(csrf -> csrf.disable())
-                .cors(Customizer.withDefaults())   // <-- Add this
+
+                // Enable CORS
+                .cors(Customizer.withDefaults())
 
                 .authorizeHttpRequests(auth -> auth
 
-                        // Allow preflight requests
+                        // Allow browser preflight requests
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
                         // Public APIs
@@ -34,22 +37,43 @@ public class SecurityConfig {
                                 "/api/users/login"
                         ).permitAll()
 
-                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                        // Temporary email testing API
+                        .requestMatchers("/api/email/**").permitAll()
 
-                        .requestMatchers(HttpMethod.POST, "/api/complaints").hasRole("STUDENT")
-                        .requestMatchers(HttpMethod.GET, "/api/complaints/my").hasRole("STUDENT")
+                        // Admin APIs
+                        .requestMatchers("/api/admin/**")
+                        .hasRole("ADMIN")
 
-                        .requestMatchers(HttpMethod.GET, "/api/complaints").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/api/complaints/**").hasRole("ADMIN")
+                        // Student complaint APIs
+                        .requestMatchers(HttpMethod.POST, "/api/complaints")
+                        .hasRole("STUDENT")
 
+                        .requestMatchers(HttpMethod.GET, "/api/complaints/my")
+                        .hasRole("STUDENT")
+
+                        // Admin complaint APIs
+                        .requestMatchers(HttpMethod.GET, "/api/complaints")
+                        .hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.PUT, "/api/complaints/**")
+                        .hasRole("ADMIN")
+
+                        // All other APIs require authentication
                         .anyRequest().authenticated()
                 )
 
+                // JWT applications should be stateless
                 .sessionManagement(session ->
-                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+                        session.sessionCreationPolicy(
+                                SessionCreationPolicy.STATELESS
+                        )
+                );
 
-        http.addFilterBefore(jwtFilter,
-                UsernamePasswordAuthenticationFilter.class);
+        // Run JWT filter before Spring Security's authentication filter
+        http.addFilterBefore(
+                jwtFilter,
+                UsernamePasswordAuthenticationFilter.class
+        );
 
         return http.build();
     }
