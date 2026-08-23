@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-CampusresolveApplication<campusresolve>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.campusresolve.CampusresolveApplication",
+            "projectName": "campusresolve",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
