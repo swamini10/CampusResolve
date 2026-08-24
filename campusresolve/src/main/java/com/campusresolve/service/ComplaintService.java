@@ -19,6 +19,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ComplaintService {
+    @Autowired
+    private EmailService emailService;
 
     @Autowired
     private ComplaintRepository complaintRepository;
@@ -46,7 +48,27 @@ public class ComplaintService {
         complaint.setUpdatedAt(null);
         complaint.setUser(user);
 
-        return complaintRepository.save(complaint);
+        Complaint savedComplaint = complaintRepository.save(complaint);
+
+// Send complaint confirmation email
+String subject = "Complaint Submitted - CampusResolve";
+
+String body = "Hello " + user.getFullName() + ",\n\n"
+        + "Your complaint has been successfully submitted to CampusResolve.\n\n"
+        + "Complaint ID: " + savedComplaint.getId() + "\n"
+        + "Complaint Title: " + savedComplaint.getTitle() + "\n"
+        + "Status: " + savedComplaint.getStatus() + "\n\n"
+        + "You can track your complaint through CampusResolve.\n\n"
+        + "Regards,\n"
+        + "CampusResolve Team";
+
+emailService.sendEmail(
+        user.getEmail(),
+        subject,
+        body
+);
+
+return savedComplaint;
     }
 
     // Get Complaint By Id
@@ -97,20 +119,49 @@ public class ComplaintService {
     }
 
     // Admin - Update Status
-    public Complaint updateStatus(Long id, ComplaintStatus status) {
+    // Admin - Update Status
+public Complaint updateStatus(Long id, ComplaintStatus status) {
 
-        Complaint complaint = complaintRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Complaint not found"));
+    Complaint complaint = complaintRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Complaint not found"));
 
-        if (complaint.getStatus() == ComplaintStatus.RESOLVED) {
-            throw new RuntimeException("Complaint is already resolved");
-        }
-
-        complaint.setStatus(status);
-        complaint.setUpdatedAt(LocalDateTime.now());
-
-        return complaintRepository.save(complaint);
+    if (complaint.getStatus() == ComplaintStatus.RESOLVED) {
+        throw new RuntimeException("Complaint is already resolved");
     }
+
+    // Store previous status
+    ComplaintStatus previousStatus = complaint.getStatus();
+
+    // Update status
+    complaint.setStatus(status);
+    complaint.setUpdatedAt(LocalDateTime.now());
+
+    // Save updated complaint
+    Complaint updatedComplaint = complaintRepository.save(complaint);
+
+    // Student who raised the complaint
+    User student = complaint.getUser();
+
+    // Send status update email
+    String subject = "Complaint Status Updated - CampusResolve";
+
+    String body = "Hello " + student.getFullName() + ",\n\n"
+            + "Your complaint status has been updated.\n\n"
+            + "Complaint ID: " + updatedComplaint.getId() + "\n"
+            + "Complaint Title: " + updatedComplaint.getTitle() + "\n\n"
+            + "Previous Status: " + previousStatus + "\n"
+            + "New Status: " + updatedComplaint.getStatus() + "\n\n"
+            + "Regards,\n"
+            + "CampusResolve Team";
+
+    emailService.sendEmail(
+            student.getEmail(),
+            subject,
+            body
+    );
+
+    return updatedComplaint;
+}
 
     // Dashboard
     public long getTotalComplaints() {
