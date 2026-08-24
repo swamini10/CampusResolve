@@ -19,6 +19,9 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private EmailService emailService;
+
     // Register User
     public User registerUser(RegisterRequest request) {
 
@@ -38,7 +41,26 @@ public class UserService {
         user.setPassword(request.getPassword());
         user.setRole(request.getRole());
 
-        return userRepository.save(user);
+        User savedUser = userRepository.save(user);
+
+        // Send registration email
+        String subject = "Welcome to CampusResolve";
+
+        String body = "Hello " + user.getFullName() + ",\n\n"
+                + "Your CampusResolve account has been successfully created.\n\n"
+                + "Registered Email: " + user.getEmail() + "\n"
+                + "Role: " + user.getRole() + "\n\n"
+                + "You can now login to CampusResolve.\n\n"
+                + "Regards,\n"
+                + "CampusResolve Team";
+
+        emailService.sendEmail(
+                user.getEmail(),
+                subject,
+                body
+        );
+
+        return savedUser;
     }
 
     // Login User
@@ -72,6 +94,18 @@ public class UserService {
         response.setRole(user.getRole());
         response.setToken(token);
         response.setMessage("Login Successful");
+
+        // Send login notification email
+        String subject = "CampusResolve Login Successful";
+
+        String body = "Hello " + user.getFullName() + ",\n\n"
+            + "You have successfully logged in to your CampusResolve account.\n\n"
+            + "Login Email: " + user.getEmail() + "\n\n"
+            + "If this login was not made by you, please contact the CampusResolve administrator.\n\n"
+            + "Regards,\n"
+            + "CampusResolve Team";
+
+        emailService.sendEmail(user.getEmail(), subject, body);
 
         return response;
     }
